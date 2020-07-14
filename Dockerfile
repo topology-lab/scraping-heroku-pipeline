@@ -4,7 +4,7 @@ FROM python:3.8
 
 MAINTAINER Heima K.
 
-WORKDIR /app
+#WORKDIR /app
 
 RUN export APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
@@ -36,16 +36,16 @@ RUN pip install requests
 
 # copy scripts
 #COPY main.py /home/apluser
-#ADD main.py main.py
-ADD . /app
+ADD main.py main.py
+#ADD . /app
 
 # DEBUG
-#RUN pwd
-RUN ls -la ./  # /
+RUN pwd
+RUN ls -la ./
 #RUN ls -la ~/  # /user/apluser
-RUN ls -la /app
+#RUN ls -la /app
 
 
 # execute script
-CMD ["python", "main.py"]
+#CMD ["python", "main.py"]
 
