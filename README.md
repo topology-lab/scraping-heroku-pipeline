@@ -10,7 +10,7 @@ Docker学習ついでにPythonも触ってみる。
 開発時はローカルで動かせるようにDockerコンテナで。
 リリース時はHerokuで。
 
-### Heroku
+## Heroku
 Schedulerのみ。無料で動かす。
 
 ## Heroku用の環境構築
@@ -18,7 +18,7 @@ LINEへの通知トークンを、以下の環境変数に設定する。
 LINE_NOTIFY_TOKEN=****
 
 ## メモ
-docker build -t scraping .
-docker run --name test --env-file ../line_api_key scraping
+- docker build -t scraping .
+- docker run --name test --env-file ../line_api_key scraping
 
 
