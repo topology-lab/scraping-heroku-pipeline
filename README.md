@@ -2,22 +2,22 @@
 working for Python3 on Heroku
 
 
-## �ړI
-Docker�w�K���ł�Python���G���Ă݂�B
-�@�\�̓X�N���C�s���O�B
+## 目的
+Docker学習ついでにPythonも触ってみる。
+機能はスクレイピング。
 
-## �����
-�J�����̓��[�J���œ�������悤��Docker�R���e�i�ŁB
-�����[�X����Heroku�ŁB
+## 動作環境
+開発時はローカルで動かせるようにDockerコンテナで。
+リリース時はHerokuで。
 
 ### Heroku
-Scheduler�̂݁B�����œ������B
+Schedulerのみ。無料で動かす。
 
-## Heroku�p�̊��\�z
-LINE�ւ̒ʒm�g�[�N�����A�ȉ��̊��ϐ��ɐݒ肷��B
+## Heroku用の環境構築
+LINEへの通知トークンを、以下の環境変数に設定する。
 LINE_NOTIFY_TOKEN=****
 
-## ����
+## メモ
 docker build -t scraping .
 docker run --name test --env-file ../line_api_key scraping
 
