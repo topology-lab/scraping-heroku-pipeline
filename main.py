@@ -18,12 +18,16 @@ buttons = soup.find_all("button")
 for button in buttons:
     print(button.get_text())
 
-nostock=soup.select_one("button.nostock")
-print("nostock=")
-print(nostock)
-message = nostock
+message = soup.select_one("button.nostock")
+print("button.nostock=")
+print(message)
 
-print(os.environ['LINE_NOTIFY_TOKEN'])
+b = soup.find('div', class_="button")
+print("div.button=")
+print(b)
+
+
+#print(os.environ['LINE_NOTIFY_TOKEN'])
 
 
 # ローカルに保存しているChrome Driverを指定(※デプロイするときはコメントアウトする)
