@@ -31,6 +31,13 @@ RUN pip install selenium
 RUN pip install beautifulsoup4
 RUN pip install requests
 
+# create Heroku setting
+RUN pip freeze > ~/requirements.txt
+RUN cat ~/requirements.txt
+
+# create runtime.txt for Heroku
+RUN python -V
+
 # copy scripts
 # COPY main.py /home/apluser
 ADD main.py main.py
