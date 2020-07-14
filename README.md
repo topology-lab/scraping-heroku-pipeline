@@ -29,4 +29,5 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
 - docker build -t scraping .
 - docker run --name test --env-file ../line_api_key scraping
 - heroku run python main.py -a scraping-st
+- heroku config -a scraping-st
 
