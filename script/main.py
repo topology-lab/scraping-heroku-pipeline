@@ -11,50 +11,14 @@ url = "https://www.columbiasports.co.jp/items/col/CU0134/"
 # データ取得
 #resp = requests.get(url)
 #print(resp.text)
-
+#
 #soup = BeautifulSoup(resp.content, "html.parser")
 #print(soup.title)
 #buttons = soup.find_all("button") 
-#print(buttons)
 #for button in buttons:
 #    print(button.get_text())
-
-#message = soup.select_one("button.nostock")
-#print("button.nostock=")
-#print(message)
-
-#b = soup.find('div', class_="button")
-#print("div.button=")
-#print(b)
-#message = b
-
-print("========")
-
-# ローカルに保存しているChrome Driverを指定(※デプロイするときはコメントアウトする)
-#driver_path = '/usr/local/bin/chromedriver'
-
-
-# クローラーの起動
-#browser = webdriver.Chrome(executable_path=driver_path, options=options)
-
-# http get
-#browser.get(url)
-
-# ソースコードを取得
-#html = driver.page_source
-
-# ブラウザを終了する
-#browser.close()
-#driver.quit()
-
-# HTMLをパースする
-#soup = BeautifulSoup(html, 'html.parser') # または、'lxml'
-
-# スクレイピングした《今日の日本の天気予報の要約》を変数に格納
-#message = soup.select_one('button.nostock').get_text()
-
-
-#print(message)
+#
+#print("========")
 
 
 # LINEに通知させる関数
