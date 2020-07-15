@@ -11,7 +11,7 @@ url = "https://www.columbiasports.co.jp/items/col/CU0134/"
 resp = requests.get(url)
 #print(resp.text)
 
-soup = BeautifulSoup(resp.text, "html.parser")
+soup = BeautifulSoup(resp.content, "html.parser")
 #print(soup.title)
 buttons = soup.find_all("button") 
 #print(buttons)
@@ -25,7 +25,7 @@ print(message)
 b = soup.find('div', class_="button")
 print("div.button=")
 print(b)
-
+message = b
 
 #print(os.environ['LINE_NOTIFY_TOKEN'])
 
