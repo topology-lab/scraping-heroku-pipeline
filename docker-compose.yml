@@ -25,3 +25,6 @@ python:
     - ./script/:/root/script/
   environment:
     - 'TZ=Asia/Tokyo'
+    - DEBUG=1
+  env_file:
+    - ../line_api_key
