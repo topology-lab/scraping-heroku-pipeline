@@ -47,5 +47,5 @@ RUN ls -la ./
 
 
 # execute script
-#CMD ["python", "main.py"]
+CMD ["python", "main.py"]
 
