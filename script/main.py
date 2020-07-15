@@ -1,5 +1,6 @@
 import os
 import requests
+from time import sleep
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -76,6 +77,7 @@ if __name__ == '__main__':
 #        browser = webdriver.Remote(
 #            command_executor='http://selenium-hub:4444/wd/hub',
 #            desired_capabilities=DesiredCapabilities.CHROME)
+
         # Heroku settings
         # Heroku上のChrome Driverを指定(※デプロイするときはコメントを外す)
         driver_path = '/app/.chromedriver/bin/chromedriver'
