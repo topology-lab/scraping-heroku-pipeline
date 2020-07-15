@@ -26,10 +26,16 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
 ファイルに「LINE_NOTIFY_TOKEN=****」書いて、docker実行時にオプションで指定する。
 
 ## メモ
-- docker build -t scraping .
-- docker run --name test --env-file ../line_api_key scraping
-- heroku run python main.py -a scraping-st
-- heroku config -a scraping-st
+- Heroku用dockerコマンドから実行
+  - docker build -t scraping .
+  - docker run --name test --env-file ../line_api_key scraping
+- Herokuステージング環境での動作確認
+  - heroku run python main.py -a scraping-st
+  - heroku config -a scraping-st
+- docker-composeで実行環境引数指定しつつ
+  - docker-compose --env-file ../line_api_key up -d
+- image掃除
+  - docker rmi `docker images -aq`
 
 ## Update
 - 2020/07/15
