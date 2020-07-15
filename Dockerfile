@@ -36,7 +36,7 @@ RUN pip install requests
 
 # copy scripts
 #COPY main.py /home/apluser
-ADD main.py main.py
+ADD ./script/main.py main.py
 #ADD . /app
 
 # DEBUG
