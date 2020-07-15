@@ -37,7 +37,7 @@ if __name__ == '__main__':
         #browser = webdriver.Chrome()   # 普通のChromeを制御する場合
 
         # HEADLESSブラウザに接続
-        # Docker setting
+        # docker-compose setting
 #        browser = webdriver.Remote(
 #            command_executor='http://selenium-hub:4444/wd/hub',
 #            desired_capabilities=DesiredCapabilities.CHROME)
