@@ -27,7 +27,7 @@ def line_notify(message):
     line_notify_token = os.environ['LINE_NOTIFY_TOKEN']
     line_notify_api = 'https://notify-api.line.me/api/notify'
     headers = {'Authorization': f'Bearer {line_notify_token}'}
-    data = {'message': f'message:{message}'}
+    data = {'message': f'{message}'}
     requests.post(line_notify_api, headers=headers, data=data)
 
 
@@ -75,13 +75,24 @@ if __name__ == '__main__':
 
         # HTMLをパースする
         soup = BeautifulSoup(html, 'html.parser') # または、'lxml'
-        
+
+        # DEBUG
+        buttons = soup.find_all('button')
+        for b in buttons:
+            print("Web在庫" in b.text)
+
+        print(soup.select_one('button.active') is None)
+
         # スクレイピングした購入ボタンのテキストを取得
         message = soup.select_one('button.nostock').get_text()
+        message = soup.select_one('button.active')
 
-        # LINEに通知させる
-        line_notify(message)
-        print(message)
+        if soup.select_one('button.active') is None:
+            print(soup.select_one('button.nostock').get_text())
+        else:
+            # LINEに通知させる
+#            line_notify(message)
+            print(message)
 
     finally:
         # 終了
