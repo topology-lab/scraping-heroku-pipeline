@@ -31,17 +31,16 @@ def line_notify(message):
     requests.post(line_notify_api, headers=headers, data=data)
 
 
-if __name__ == '__main__':
-    try:
-        #browser = webdriver.Firefox()  # 普通のFilefoxを制御する場合
-        #browser = webdriver.Chrome()   # 普通のChromeを制御する場合
+# docker-composeによる環境か、Herokuかを環境変数で切り替える。
+# やり方として良いとは考えていない。
+def get_browser():
 
-        # HEADLESSブラウザに接続
+    if  "DEBUG" in os.environ:
         # docker-compose setting
-#        browser = webdriver.Remote(
-#            command_executor='http://selenium-hub:4444/wd/hub',
-#            desired_capabilities=DesiredCapabilities.CHROME)
-
+        return webdriver.Remote(
+            command_executor='http://selenium-hub:4444/wd/hub',
+            desired_capabilities=DesiredCapabilities.CHROME)
+    else:
         # Heroku settings
         # Heroku上のChrome Driverを指定(※デプロイするときはコメントを外す)
         driver_path = '/app/.chromedriver/bin/chromedriver'
@@ -55,14 +54,21 @@ if __name__ == '__main__':
         #options.add_argument('--start-maximized');
         options.add_argument('--headless');
 
-        browser = webdriver.Chrome(
+        return webdriver.Chrome(
             executable_path=driver_path,
             options=options)
 
 
+if __name__ == '__main__':
+    try:
+        #browser = webdriver.Firefox()  # 普通のFilefoxを制御する場合
+        #browser = webdriver.Chrome()   # 普通のChromeを制御する場合
+
+        # HEADLESSブラウザに接続
+        browser = get_browser()
+
         # Googleで検索実行
-        browser.get(url);
-        sleep(1)
+        browser.get(url)
 
         # 検索結果取得
         html = browser.page_source
@@ -70,12 +76,11 @@ if __name__ == '__main__':
         # HTMLをパースする
         soup = BeautifulSoup(html, 'html.parser') # または、'lxml'
         
-        # スクレイピングした《今日の日本の天気予報の要約》を変数に格納
+        # スクレイピングした購入ボタンのテキストを取得
         message = soup.select_one('button.nostock').get_text()
 
-
         # LINEに通知させる
-        #line_notify(message)
+        line_notify(message)
         print(message)
 
     finally:
