@@ -33,7 +33,7 @@ print("========")
 #driver_path = '/usr/local/bin/chromedriver'
 
 # Heroku上のChrome Driverを指定(※デプロイするときはコメントを外す)
-# driver_path = '/app/.chromedriver/bin/chromedriver'
+driver_path = '/app/.chromedriver/bin/chromedriver'
 
 # Headless Chromeをあらゆる環境で起動させるオプション
 #options = Options()
