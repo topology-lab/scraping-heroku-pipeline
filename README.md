@@ -31,3 +31,7 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
 - heroku run python main.py -a scraping-st
 - heroku config -a scraping-st
 
+## Update
+- 2020/07/15
+  - docker-compose使ってpython、selenium、chromeを別に構築するサンプルがあったので、そっちに変更
+    - https://github.com/sikkimtemi/selenium
