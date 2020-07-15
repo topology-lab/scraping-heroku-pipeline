@@ -2,8 +2,8 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
+#from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 url = "https://www.columbiasports.co.jp/items/col/CU0134/"
 
@@ -27,6 +27,7 @@ print("div.button=")
 print(b)
 message = b
 
+print("========")
 
 # ローカルに保存しているChrome Driverを指定(※デプロイするときはコメントアウトする)
 #driver_path = '/usr/local/bin/chromedriver'
@@ -44,10 +45,10 @@ message = b
 #options.add_argument('--headless');
 
 # クローラーの起動
-#driver = webdriver.Chrome(executable_path=driver_path, chrome_options=options)
+#driver = webdriver.Chrome(executable_path=driver_path, options=options)
 
-# Yahooの天気サイトにアクセス
-#driver.get('https://weather.yahoo.co.jp/weather/')
+# http get
+#driver.get(url)
 
 # ソースコードを取得
 #html = driver.page_source
@@ -59,7 +60,9 @@ message = b
 #soup = BeautifulSoup(html, 'lxml') # または、'html.parser'
 
 # スクレイピングした《今日の日本の天気予報の要約》を変数に格納
-#message = soup.select_one('#condition > p.text').get_text()
+#message = soup.select_one('button.nostock').get_text()
+
+
 
 # LINEに通知させる関数
 def line_notify(message):
@@ -70,5 +73,33 @@ def line_notify(message):
     data = {'message': f'message:{message}'}
     requests.post(line_notify_api, headers=headers, data=data)
 
-# LINEに通知させる
-line_notify(message)
+
+if __name__ == '__main__':
+    try:
+        #browser = webdriver.Firefox()  # 普通のFilefoxを制御する場合
+        #browser = webdriver.Chrome()   # 普通のChromeを制御する場合
+
+        # HEADLESSブラウザに接続
+        browser = webdriver.Remote(
+            command_executor='http://selenium-hub:4444/wd/hub',
+            desired_capabilities=DesiredCapabilities.CHROME)
+
+        # Googleで検索実行
+        #message = execSearch(browser)
+        browser.get(url);
+        html = browser.page_source
+        # HTMLをパースする
+        soup = BeautifulSoup(html, 'html.parser') # または、'lxml'
+        
+        # スクレイピングした《今日の日本の天気予報の要約》を変数に格納
+        message = soup.select_one('button.nostock').get_text()
+
+
+        # LINEに通知させる
+        #line_notify(message)
+        print(message)
+
+    finally:
+        # 終了
+        browser.close()
+        browser.quit()
