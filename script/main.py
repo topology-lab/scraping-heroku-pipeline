@@ -27,8 +27,6 @@ print("div.button=")
 print(b)
 message = b
 
-#print(os.environ['LINE_NOTIFY_TOKEN'])
-
 
 # ローカルに保存しているChrome Driverを指定(※デプロイするときはコメントアウトする)
 #driver_path = '/usr/local/bin/chromedriver'
@@ -45,7 +43,7 @@ message = b
 #options.add_argument('--start-maximized');
 #options.add_argument('--headless');
 
-# クローラーの起動  
+# クローラーの起動
 #driver = webdriver.Chrome(executable_path=driver_path, chrome_options=options)
 
 # Yahooの天気サイトにアクセス
