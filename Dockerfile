@@ -40,8 +40,8 @@ ADD ./script/main.py main.py
 #ADD . /app
 
 # DEBUG
-RUN pwd
-RUN ls -la ./
+#RUN pwd
+#RUN ls -la ./
 #RUN ls -la ~/  # /user/apluser
 #RUN ls -la /app
 
