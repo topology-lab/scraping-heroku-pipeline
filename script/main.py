@@ -98,7 +98,7 @@ if __name__ == '__main__':
 
         # Googleで検索実行
         browser.get(url);
-        time.sleep(1)
+        sleep(1)
 
         # 検索結果取得
         html = browser.page_source
