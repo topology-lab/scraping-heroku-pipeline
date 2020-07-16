@@ -41,3 +41,8 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
 - 2020/07/15
   - docker-compose使ってpython、selenium、chromeを別に構築するサンプルがあったので、そっちに変更
     - https://github.com/sikkimtemi/selenium
+  - 環境変数に「DEBUG=1」が設定されているかどうかで実行環境（docker-compose or Heroku）を判断するようなロジックを追加したけど、やっつけな気がしてならない。
+- 2020/07/16
+  - docker、docker-composeで作られるコンテナの棲み分けが自分の中で整理できていなかったと考え直した。次の目的として作り直す予定。
+    - docker：ほぼHeroku環境（/app配下に全ファイルがデプロイされている）もの
+    - docker-compose：必要な環境（Python/Chrome HEADLESS/selenium）が別コンテナとして作成される、Dockerで有るべき姿っぽい構成。
