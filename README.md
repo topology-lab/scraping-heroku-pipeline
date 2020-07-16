@@ -30,7 +30,7 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
   - docker build -t scraping .
   - docker run --name test --env-file ../line_api_key scraping
 - Herokuステージング環境での動作確認
-  - heroku run python main.py -a scraping-st
+  - heroku run python script/main.py -a scraping-st
   - heroku config -a scraping-st
 - docker-composeで実行環境引数指定しつつ
   - docker-compose --env-file ../line_api_key up -d
