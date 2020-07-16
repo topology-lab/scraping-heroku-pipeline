@@ -22,9 +22,9 @@ addonはSchedulerのみ。
 heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
 ```
   - Buildpackにchrome driver関連2つ追加しないと動かない。しかも順番もあってないとだめ。
-    * heroku/python （多分これは最初から入ってる。）
-    * https://github.com/heroku/heroku-buildpack-google-chrome
-    * https://github.com/heroku/heroku-buildpack-chromedriver
+    1. heroku/python （多分これは最初から入ってる。）
+    2. https://github.com/heroku/heroku-buildpack-google-chrome
+    3. https://github.com/heroku/heroku-buildpack-chromedriver
 
     - 出るエラー：No such file or directory: '/app/.chromedriver/bin/chromedriver'
 
@@ -59,3 +59,6 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
     - docker：pythonイメージに諸々pip installされた環境。ほぼHeroku環境（/app配下に全ファイルがデプロイされている）っぽい構成。
     - docker-compose：必要な環境（Python/Chrome HEADLESS/selenium）が別コンテナとして作成される、Dockerで有るべき姿っぽい構成。
   - とりあえずスクレイピング機能の部分は今の実装で良しとする。これ以上作り込んでもライブラリ（BeautifulSoup）の機能確認にしかならなそう。
+  - Heroku ステージング環境が何もしてないのに壊れた。
+    - エラーでググったら、buildpackを機能最後に消したのが原因だった様子。
+    - 環境構築のところに残しておいた。
