@@ -19,7 +19,6 @@ def line_notify(message):
     data = {'message': f'{message}'}
     requests.post(line_notify_api, headers=headers, data=data)
 
-
 # docker-composeによる環境か、Herokuかを環境変数で切り替える。
 # やり方として良いとは考えていない。
 def get_browser():
