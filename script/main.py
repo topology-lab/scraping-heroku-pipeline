@@ -23,7 +23,6 @@ def line_notify(message):
 # docker-composeによる環境か、Herokuかを環境変数で切り替える。
 # やり方として良いとは考えていない。
 def get_browser():
-
     if  "DEBUG" in os.environ:
         # docker-compose setting
         return webdriver.Remote(
