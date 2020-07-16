@@ -26,6 +26,8 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
     * https://github.com/heroku/heroku-buildpack-google-chrome
     * https://github.com/heroku/heroku-buildpack-chromedriver
 
+    - 出るエラー：No such file or directory: '/app/.chromedriver/bin/chromedriver'
+
 
 - ローカル
 ファイルに「LINE_NOTIFY_TOKEN=****」書いて、docker実行時にオプションで指定する。
