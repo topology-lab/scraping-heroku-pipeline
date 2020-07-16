@@ -47,7 +47,6 @@ def get_browser():
             executable_path=driver_path,
             options=options)
 
-
 if __name__ == '__main__':
     try:
         #browser = webdriver.Firefox()  # 普通のFilefoxを制御する場合
