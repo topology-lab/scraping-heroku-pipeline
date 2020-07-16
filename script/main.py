@@ -7,19 +7,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 url = "https://www.columbiasports.co.jp/items/col/CU0134/"
-
-# データ取得
-#resp = requests.get(url)
-#print(resp.text)
-#
-#soup = BeautifulSoup(resp.content, "html.parser")
-#print(soup.title)
-#buttons = soup.find_all("button") 
-#for button in buttons:
-#    print(button.get_text())
-#
-#print("========")
-
+# デバッグ用。偶然在庫有無混在サイズのあった商品。
+#url = "https://www.columbiasports.co.jp/items/col/SU9090/"
 
 # LINEに通知させる関数
 def line_notify(message):
@@ -74,25 +63,44 @@ if __name__ == '__main__':
         html = browser.page_source
 
         # HTMLをパースする
-        soup = BeautifulSoup(html, 'html.parser') # または、'lxml'
+        soup = BeautifulSoup(html, 'html.parser') # 'lxml'だと何かエラー出た
 
-        # DEBUG
-        buttons = soup.find_all('button')
-        for b in buttons:
-            print("Web在庫" in b.text)
+        # DEBUG print
+#        buttons = soup.find_all('button')
+#        for b in buttons:
+#            print("Web在庫" in b.text)
+#        print("========")
+#        print(soup.select_one('button.active') is None)
+#        print("========")
+#        print(type(buttons))
+#        print("========")
 
-        print(soup.select_one('button.active') is None)
+        # スクレイピングした購入ボタンの要素取得
 
-        # スクレイピングした購入ボタンのテキストを取得
-        message = soup.select_one('button.nostock').get_text()
-        message = soup.select_one('button.active')
+        # どうでもいいがサイトの仕様
+        # ==========================
+        # サイズ未選択「class="dead"」 -> 在庫があるサイズ選択「class="active"」で遷移
+        # すべて在庫がないとclass="nostock"
+        # 一つでも在庫があるサイズが有ればclass="dead"が初期値
+        #   -> 在庫があるサイズを選ぶとclass="active"
+        #   -> 在庫がないサイズを選ぶとclass="nostock"
+        # ==========================
+        # ので、nostockがあるか無いかでチェックすれば良さそう。
+        elm_stock = soup.select_one('button.dead')
+        elm_nostock = soup.select_one('button.nostock')
 
-        if soup.select_one('button.active') is None:
-            print(soup.select_one('button.nostock').get_text())
-        else:
+        # 在庫あり
+        if elm_nostock is None:
             # LINEに通知させる
-#            line_notify(message)
+            message = "販売中"
+            line_notify(message)
             print(message)
+        # 在庫なし
+#        elif elm_nostock is not None:
+        else:
+            message = soup.select_one('button.nostock').get_text()
+            print(message)
+#            line_notify("ボタンが無い…？")
 
     finally:
         # 終了
