@@ -22,9 +22,9 @@ addonはSchedulerのみ。
 heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
 ```
   - Buildpackにchrome driver関連2つ追加しないと動かない。しかも順番もあってないとだめ。
-    # heroku/python （多分これは最初から入ってる。）
-    # https://github.com/heroku/heroku-buildpack-google-chrome
-    # https://github.com/heroku/heroku-buildpack-chromedriver
+    * heroku/python （多分これは最初から入ってる。）
+    * https://github.com/heroku/heroku-buildpack-google-chrome
+    * https://github.com/heroku/heroku-buildpack-chromedriver
 
 
 - ローカル
