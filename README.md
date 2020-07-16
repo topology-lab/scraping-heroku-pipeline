@@ -17,10 +17,15 @@ addonはSchedulerのみ。
 
 ## 環境構築
 - Heroku
-LINEへの通知トークンを環境変数に設定する。
+  - LINEへの通知トークンを環境変数に設定する。
 ```
 heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
 ```
+  - Buildpackにchrome driver関連2つ追加しないと動かない。しかも順番もあってないとだめ。
+    # heroku/python （多分これは最初から入ってる。）
+    # https://github.com/heroku/heroku-buildpack-google-chrome
+    # https://github.com/heroku/heroku-buildpack-chromedriver
+
 
 - ローカル
 ファイルに「LINE_NOTIFY_TOKEN=****」書いて、docker実行時にオプションで指定する。
