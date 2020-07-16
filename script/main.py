@@ -10,6 +10,7 @@ url = "https://www.columbiasports.co.jp/items/col/CU0134/"
 # デバッグ用。偶然在庫有無混在サイズのあった商品。
 #url = "https://www.columbiasports.co.jp/items/col/SU9090/"
 
+
 # LINEに通知させる関数
 def line_notify(message):
     # LINE通知トークンの取得
