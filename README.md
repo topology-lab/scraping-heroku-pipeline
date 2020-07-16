@@ -41,8 +41,14 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
 - 2020/07/15
   - docker-compose使ってpython、selenium、chromeを別に構築するサンプルがあったので、そっちに変更
     - https://github.com/sikkimtemi/selenium
-  - 環境変数に「DEBUG=1」が設定されているかどうかで実行環境（docker-compose or Heroku）を判断するようなロジックを追加したけど、やっつけな気がしてならない。
+  - なんでseleniumとHEADLESSブラウザが使われるのかわかっていなかったが理解できた。
+    - よくあるのだとログイン処理とかを実装できるからselenium使ってるっぽい。
+      - 試しているColumbiaのECだと、色とかサイズとかによって在庫状況が変わるので、狙ったアイテムを選択する処理をseleniumで実装すればよりやりたいことが実現できると思われる。
+    - pythonでrequest.getってやってもJavascriptが動かないので表示されないリソースが多い。それをHEADLESSブラウザが解決してくれるっぽい。
+      - 試しているサイトだと、商品情報はまるっと初期表示後に取得してるっぽくて、header/footer以外の商品情報は取れていなかった。
+  - 環境変数に「DEBUG=1」が設定されているかどうかで実行環境（docker-compose or Heroku）を判断するようなロジックを追加したけど、やっつけな気がしてならない。インフラの制約がアプリに実装されるのが良くない印象。
 - 2020/07/16
   - docker、docker-composeで作られるコンテナの棲み分けが自分の中で整理できていなかったと考え直した。次の目的として作り直す予定。
-    - docker：ほぼHeroku環境（/app配下に全ファイルがデプロイされている）もの
+    - docker：pythonイメージに諸々pip installされた環境。ほぼHeroku環境（/app配下に全ファイルがデプロイされている）っぽい構成。
     - docker-compose：必要な環境（Python/Chrome HEADLESS/selenium）が別コンテナとして作成される、Dockerで有るべき姿っぽい構成。
+  - とりあえずスクレイピング機能の部分は今の実装で良しとする。これ以上作り込んでもライブラリ（BeautifulSoup）の機能確認にしかならなそう。
