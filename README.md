@@ -33,9 +33,9 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
 ファイルに「LINE_NOTIFY_TOKEN=****」書いて、docker実行時にオプションで指定する。
 
 ## メモ
-- Heroku用dockerコマンドから実行
+- Heroku用dockerコマンドからイメージ作成して実行
   - docker build -t scraping .
-  - docker run --name test --env-file ../line_api_key scraping
+  - docker run --rm --env-file ../line_api_key --name test scraping python script/main.py
 - Herokuステージング環境での動作確認
   - heroku run python script/main.py -a scraping-st
   - heroku config -a scraping-st
@@ -62,3 +62,12 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
   - Heroku ステージング環境が何もしてないのに壊れた。
     - エラーでググったら、buildpackを機能最後に消したのが原因だった様子。
     - 環境構築のところに残しておいた。
+- 2020/07/17
+  - ./Dockerfileから作るコンテナをHerokuに合わせるよう修正。
+    - WORKDIRを/appに、全ファイル追加。
+    - chromedriverの展開先をHeroku（のBuildpack）同様「/app/.chromedriver/bin/chromedriver」に。
+    - 実行時にchromedriverでエラーが出てるように見えた。ググったところ、seleniumのオプションで参照するモジュールが変わるっぽい。
+      - 出たエラー：DevToolsActivePort file doesn't exist
+      - 追加したオプション：--no-sandbox
+      - 参考したサイト（同じ事象ではないが試すヒントになった）：https://isgs-lab.com/368/
+
