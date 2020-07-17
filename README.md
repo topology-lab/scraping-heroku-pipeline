@@ -43,7 +43,7 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
   - docker-compose up -d
   - docker exec -it python python main.py
 - image掃除
-  - docker rmi `docker images -aq`
+  - docker rmi \`docker images -aq\`
 
 ## Update
 - 2020/07/15
