@@ -30,9 +30,11 @@ def get_browser():
             desired_capabilities=DesiredCapabilities.CHROME)
     else:
         # Heroku settings
+        # ローカルに保存しているChrome Driverを指定(※デプロイするときはコメントアウトする)
+#        driver_path = '/usr/local/bin/chromedriver'
         # Heroku上のChrome Driverを指定(※デプロイするときはコメントを外す)
         driver_path = '/app/.chromedriver/bin/chromedriver'
-        
+
         # Headless Chromeをあらゆる環境で起動させるオプション
         options = Options()
         #options.add_argument('--disable-gpu');
@@ -40,6 +42,7 @@ def get_browser():
         #options.add_argument('--proxy-server="direct://"');
         #options.add_argument('--proxy-bypass-list=*');
         #options.add_argument('--start-maximized');
+        options.add_argument('--no-sandbox');
         options.add_argument('--headless');
 
         return webdriver.Chrome(
@@ -96,7 +99,7 @@ if __name__ == '__main__':
         # 在庫なし
 #        elif elm_nostock is not None:
         else:
-            message = soup.select_one('button.nostock').get_text()
+            message = elm_nostock.get_text()
             print(message)
 #            line_notify("ボタンが無い…？")
 
