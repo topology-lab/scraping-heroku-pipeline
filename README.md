@@ -40,7 +40,8 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
   - heroku run python script/main.py -a scraping-st
   - heroku config -a scraping-st
 - docker-composeで実行環境引数指定しつつ
-  - docker-compose --env-file ../line_api_key up -d
+  - docker-compose up -d
+  - docker exec -it python python main.py
 - image掃除
   - docker rmi `docker images -aq`
 

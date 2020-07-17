@@ -45,12 +45,12 @@ ADD . /app
 #RUN pwd
 #RUN ls -la ./
 #RUN ls -la ~/  # /user/apluser
-RUN ls -la /app
+#RUN ls -la /app
 #RUN ls -la /usr/local/bin/
-RUN env
+#RUN env
 
 # Heroku requirements.txt
-RUN pip freeze
+#RUN pip freeze
 
 # execute script
 #CMD ["python", "script/main.py"]
