@@ -114,7 +114,6 @@ def main(args=sys.argv):
         # 終了
         browser.close()
         browser.quit()
-        print("quit")
 
 if __name__ == '__main__':
     main()
