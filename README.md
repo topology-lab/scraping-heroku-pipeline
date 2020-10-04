@@ -71,4 +71,10 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
       - 出たエラー：DevToolsActivePort file doesn't exist
       - 追加したオプション：--no-sandbox
       - 参考したサイト（同じ事象ではないが試すヒントになった）：https://isgs-lab.com/368/
+- 2020/10/04
+  - 商品掲載終了したみたいなので404対応
+    - 調べたらBeautifulSoupがhttpステータス対応していなかった。
+    - 渋々HTML tag（h2）から検索＋文字列マッチングした。
+  - returnできなかったのでmain関数とした。
+    - importにsys追加
 

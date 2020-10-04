@@ -1,4 +1,5 @@
 import os
+import sys
 import requests
 from time import sleep
 from bs4 import BeautifulSoup
@@ -49,7 +50,7 @@ def get_browser():
             executable_path=driver_path,
             options=options)
 
-if __name__ == '__main__':
+def main(args=sys.argv):
     try:
         #browser = webdriver.Firefox()  # 普通のFilefoxを制御する場合
         #browser = webdriver.Chrome()   # 普通のChromeを制御する場合
@@ -76,6 +77,12 @@ if __name__ == '__main__':
 #        print(type(buttons))
 #        print("========")
 
+        # 掲載終了検知
+        for elm in soup.find_all("h2"):
+            if elm.text == "お探しのページは見つかりません":
+                print("掲載終了")
+                return 0
+
         # スクレイピングした購入ボタンの要素取得
 
         # どうでもいいがサイトの仕様
@@ -93,7 +100,7 @@ if __name__ == '__main__':
         # 在庫あり
         if elm_nostock is None:
             # LINEに通知させる
-            message = "販売中"
+            message = "販売中\n" + url
             line_notify(message)
             print(message)
         # 在庫なし
@@ -107,3 +114,7 @@ if __name__ == '__main__':
         # 終了
         browser.close()
         browser.quit()
+        print("quit")
+
+if __name__ == '__main__':
+    main()
