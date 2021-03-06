@@ -70,11 +70,16 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
     - 実行時にchromedriverでエラーが出てるように見えた。ググったところ、seleniumのオプションで参照するモジュールが変わるっぽい。
       - 出たエラー：DevToolsActivePort file doesn't exist
       - 追加したオプション：--no-sandbox
-      - 参考したサイト（同じ事象ではないが試すヒントになった）：https://isgs-lab.com/368/
+      - 参考したサイト（同じ事象ではないが試すヒントになった）
+         - https://isgs-lab.com/368/
 - 2020/10/04
   - 商品掲載終了したみたいなので404対応
     - 調べたらBeautifulSoupがhttpステータス対応していなかった。
     - 渋々HTML tag（h2）から検索＋文字列マッチングした。
   - returnできなかったのでmain関数とした。
     - importにsys追加
-
+- 2021/03/06
+  - 買うもの買ったので通知がうざくなったので止めることにした。
+  - Herokuのpipelineで、product環境にだけ設定していた、Heroku Schedulerの設定を残しておく。
+    - Job	Dyno Size	Frequency
+    - $ python script/main.py	Free	Daily at 1:00 AM UTC
