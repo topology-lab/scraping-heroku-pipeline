@@ -81,5 +81,5 @@ heroku config:set LINE_NOTIFY_TOKEN=**** -a app-name
 - 2021/03/06
   - 買うもの買ったので通知がうざくなったので止めることにした。
   - Herokuのpipelineで、product環境にだけ設定していた、Heroku Schedulerの設定を残しておく。
-    - Job	Dyno Size	Frequency
-    - $ python script/main.py	Free	Daily at 1:00 AM UTC
+    - Job / Dyno Size / Frequency
+    - $ python script/main.py / Free / Daily at 1:00 AM UTC
